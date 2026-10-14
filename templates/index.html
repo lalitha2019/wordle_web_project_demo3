@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordle Letter Counts and Patterns Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .data { border-collapse: collapse; width: 50%; }
+        .data th, .data td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .data th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Wordle Patterns and Counts as of {{last_date}}</h1>
+    <p>Working on more ways to explore. Please visit frequently to check for updates</p>
+    <a href="https://github.com/lalitha2019/wordle_web_project">Backend code for webscraping, parsing and preparing data</a>
+    <p></p>
+    <a href="https://github.com/lalitha2019/wordle_web_project_demo_part">Copy of code for previous working demo on PythonAnywhere</a>
+    <p></p>
+    <form action="/show_custom_counts" method="POST">
+        <label for="year_select">Choose a year:</label>
+	        <select name="year_select" id="year_select" required>
+  		    <option value="" selected disabled>-- Select an option --</option>
+	        </select>
+        <label for="month_select">Choose a month:</label>
+	        <select name="month_select" id="month_select" required>
+  		    <option value="" selected disabled>-- Select an option --</option>
+	        </select>
+        <p></p>
+        <button type="submit" name="show_custom" value="graph">Show graph of total counts for the month</button>
+        <p></p>
+        <button type="submit" name="show_custom" value="counts">Show break down of counts by position</button>
+    </form>
+    <p></p>
+    
+    <script>
+     // 1. Define your data array
+    const year_vals = JSON.parse('{{years | tojson}}')
+    const month_vals = JSON.parse('{{months | tojson}}')
+    const year_select_element = document.getElementById("year_select");
+    const month_select_element = document.getElementById("month_select");
+
+    function populate_options(select_element, options_list){
+        // Clear existing dynamic options (keeping the placeholder index 0)
+	    select_element.length = 1; 
+
+        //loop through options_list
+        options_list.forEach(option_val => {
+ 		const option = document.createElement("option");
+        // Assign value and text content
+ 		option.value = option_val
+		option.textContent = option_val;
+        // Append the option to the dropdown list
+		select_element.appendChild(option);
+        }); 
+    }
+    populate_options(year_select_element,year_vals)
+    populate_options(month_select_element, month_vals)
+
+    year_select_element.addEventListener("change",
+            function() {
+                const selected_year = year_select_element.value
+                if(selected_year == '2021') {
+                   populate_options(month_select_element, month_vals.slice(5,))  
+                } else {populate_options(month_select_element, month_vals)}
+            })
+    </script>
+</body>
+</html>

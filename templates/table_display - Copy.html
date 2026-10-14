@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordle letter patterns</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .data { border-collapse: collapse; width: 50%; }
+        .data th, .data td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .data th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>{{table_name}}</h1>
+    <!-- The '| safe' filter tells Flask not to escape the HTML tags -->
+    {{ table | safe }}
+
+    <!--<div class="graph-container">
+        <img src="data:image/png;base64,{{ plot_var }}" alt="Matplotlib Graph">
+    </div>-->
+
+    
+
+</body>
+</html>

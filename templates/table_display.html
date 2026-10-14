@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordle letter patterns</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .data { border-collapse: collapse; width: 50%; }
+        .data th, .data td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .data th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Counts for {{year}} {{month}}</h1>
+    <!-- The '| safe' filter tells Flask not to escape the HTML tags -->
+    <form action="/show_graph" method="POST">
+     <label for="position_select">Choose a letter position:</label>
+	        <select name="position_select" id="position_select" required>
+  		    <option value="" selected disabled>-- Select an option --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+	        </select>
+            <button type="submit">Show graph</button> 
+            <p></p>
+    </form>
+    {{ table | safe }}
+
+
+</body>
+</html>

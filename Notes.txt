@@ -1,0 +1,5 @@
+1. Select a year and a month (index.html)
+2. See the graph (displayed as a stand-alone page - graph_display.html)
+And/ OR
+See the break up counts for each of the 5 places in the wordle answer(displayed as a stand-alone page - table_display.html).
+3. From the page with break up counts, see the graph of counts in a given place of the word (1,2,3,4 or 5) (displayed as a stand-alone page - graph_display.html)
